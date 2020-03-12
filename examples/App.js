@@ -23,6 +23,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import StringUtils from './src/StringUtils';
 
 const App: () => React$Node = () => {
   return (
