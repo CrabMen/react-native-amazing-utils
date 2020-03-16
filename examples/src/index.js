@@ -1,8 +1,9 @@
 
-StringUtils = {
+var StringUtils = {
 
-    capitalize: function (str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
+    capitalize (str) {
+        if(str.length == 0) return str
+        return str.charAt(0).toUpperCase() + str.slice(1)
     },
 
 
@@ -16,7 +17,7 @@ StringUtils = {
         return str1.localeCompare(str2,locales)
     },
 
-    contains: function (str, searchStr,ignoreCase) {
+    contains (str, searchStr,ignoreCase) {
 
         if (str.length == 0 || searchSeq.length == 0) return false
 
@@ -38,15 +39,15 @@ StringUtils = {
         return true
     },
 
-    containsIgnoreCase(str, searchSeq) {
+    // containsIgnoreCase(str, searchSeq) {
 
-        if (str.length == 0 || searchSeq.length == 0) return false
+    //     if (str.length == 0 || searchSeq.length == 0) return false
 
-        let searchStr = searchSeq.toLowerCase()
+    //     let searchStr = searchSeq.toLowerCase()
 
-        return str.toLowerCase().indexOf(searchStr)
+    //     return str.toLowerCase().indexOf(searchStr)
 
-    },
+    // },
     // 判断字符串中是否不包含指定的字符或指定的字符串中的字符，区分大小写
     containsNone(str, searchSeq) {
         return !containsOnly(str, searchSeq)
@@ -60,34 +61,34 @@ StringUtils = {
         }
         return true
     },
-    containsWhitespace: function (input) {
-        return this.contains(input, ' ');
+    containsWhitespace (str) {
+        return this.contains(str, ' ');
     },
     //统计含有的子字符串的个数
-    countMatches: function (input, sub) {
-        if (this.isEmpty(input) || this.isEmpty(sub)) {
+    countMatches (str, sub) {
+        if (this.isEmpty(str) || this.isEmpty(sub)) {
             return 0;
         }
         var count = 0;
         var index = 0;
-        while ((index = input.indexOf(sub, index)) != -1) {
+        while ((index = str.indexOf(sub, index)) != -1) {
             index += sub.length;
             count++;
         }
         return count;
     },
     // defaultIfBlank() { },
-    defaultIfBlank: function (input, defaultStr) {
-        return this.isBlank(input) ? defaultStr : input;
+    defaultIfBlank (str, defaultStr) {
+        return this.isBlank(str) ? defaultStr : str;
     },
-    defaultIfEmpty: function (input, defaultStr) {
-        return this.isEmpty(input) ? defaultStr : input;
+    defaultIfEmpty (str, defaultStr) {
+        return this.isEmpty(str) ? defaultStr : str;
     },
-    defaultString: function (input, defaultStr) {
-        return input == null ? defaultStr : input;
+    defaultString (str, defaultStr) {
+        return str == null ? defaultStr : str;
     },
-    deleteWhitespace: function (input) {
-        return input.replace(/\s+/g, '');
+    deleteWhitespace (str) {
+        return str.replace(/\s+/g, '');
     },
 
     difference(str1, str2) {
@@ -109,21 +110,21 @@ StringUtils = {
 
     },
 
-    endsWith: function (input, suffix) {
+    endsWith (str, suffix) {
         String
-        return input.lastIndexOf(suffix) === 0;
+        return str.lastIndexOf(suffix) === 0;
     },
     // endsWithAny() { },
 
     // endsWithIgnoreCase() { },
-    equals: function (input1, input2) {
-        return input1 == input2;
+    equals (str1, str2) {
+        return str1 == str2;
     },
 
     // equalsAny() { },
     // equalsAnyIgnoreCase() { },
-    equalsIgnoreCase: function (input1, input2) {
-        return input1.toLocaleLowerCase() == input2.toLocaleLowerCase();
+    equalsIgnoreCase (str1, str2) {
+        return str1.toLocaleLowerCase() == str2.toLocaleLowerCase();
     },
     // firstNonBlank(){},
     // firstNonEmpty(){},
@@ -154,102 +155,103 @@ StringUtils = {
     // },
     // indexOfDifference(){},
     indexOfIgnoreCase(str, serachStr) {
+        String
         const newStr = str.toLowerCase()
         const newSearchStr = serachStr.toLowerCase()
         return indexOf(newStr, newSearchStr)
     },
-    isAllLowerCase: function (input) {
-        return /^[a-z]+$/.test(input);
+    isAllLowerCase (str) {
+        return /^[a-z]+$/.test(str);
     },
-    isAllUpperCase: function (input) {
-        return /^[A-Z]+$/.test(input);
+    isAllUpperCase (str) {
+        return /^[A-Z]+$/.test(str);
     },
     //只包含字母
-    isAlpha: function (input) {
-        return /^[a-z]+$/i.test(input);
+    isAlpha (str) {
+        return /^[a-z]+$/i.test(str);
     },
     //只包含字母、空格
-    isAlphaSpace: function (input) {
-        return /^[a-z\s]*$/i.test(input);
+    isAlphaSpace (str) {
+        return /^[a-z\s]*$/i.test(str);
     },
     //只包含字母、数字
-    isAlphanumeric: function (input) {
-        return /^[a-z0-9]+$/i.test(input);
+    isAlphanumeric (str) {
+        return /^[a-z0-9]+$/i.test(str);
     },
     //只包含字母、数字和空格
-    isAlphanumericSpace: function (input) {
-        return /^[a-z0-9\s]*$/i.test(input);
+    isAlphanumericSpace (str) {
+        return /^[a-z0-9\s]*$/i.test(str);
     },
     //数字
-    isNumeric: function (input) {
-        return /^(?:[1-9]\d*|0)(?:\.\d+)?$/.test(input);
+    isNumeric (str) {
+        return /^(?:[1-9]\d*|0)(?:\.\d+)?$/.test(str);
     },
     //小数
-    isDecimal: function (input) {
-        return /^[-+]?(?:0|[1-9]\d*)\.\d+$/.test(input);
+    isDecimal (str) {
+        return /^[-+]?(?:0|[1-9]\d*)\.\d+$/.test(str);
     },
     //负小数
-    isNegativeDecimal: function (input) {
-        return /^\-?(?:0|[1-9]\d*)\.\d+$/.test(input);
+    isNegativeDecimal (str) {
+        return /^\-?(?:0|[1-9]\d*)\.\d+$/.test(str);
     },
     //正小数
-    isPositiveDecimal: function (input) {
-        return /^\+?(?:0|[1-9]\d*)\.\d+$/.test(input);
+    isPositiveDecimal (str) {
+        return /^\+?(?:0|[1-9]\d*)\.\d+$/.test(str);
     },
     //整数
-    isInteger: function (input) {
-        return /^[-+]?(?:0|[1-9]\d*)$/.test(input);
+    isInteger (str) {
+        return /^[-+]?(?:0|[1-9]\d*)$/.test(str);
     },
     //正整数
-    isPositiveInteger: function (input) {
-        return /^\+?(?:0|[1-9]\d*)$/.test(input);
+    isPositiveInteger (str) {
+        return /^\+?(?:0|[1-9]\d*)$/.test(str);
     },
     //负整数
-    isNegativeInteger: function (input) {
-        return /^\-?(?:0|[1-9]\d*)$/.test(input);
+    isNegativeInteger (str) {
+        return /^\-?(?:0|[1-9]\d*)$/.test(str);
     },
     //只包含数字和空格
-    isNumericSpace: function (input) {
-        return /^[\d\s]*$/.test(input);
+    isNumericSpace (str) {
+        return /^[\d\s]*$/.test(str);
     },
     //首大写字母转小写
-    uncapitalize: function (input) {
+    uncapitalize (str) {
         var strLen = 0;
-        if (input == null || (strLen = input.length) == 0) {
-            return input;
+        if (str == null || (strLen = str.length) == 0) {
+            return str;
         }
-        return input.replace(/^[A-Z]/, function (matchStr) {
+        return str.replace(/^[A-Z]/, function (matchStr) {
             return matchStr.toLocaleLowerCase();
         });
     },
 
-    isEmpty: function (input) {
-        return input == null || input == '';
+    isEmpty (str) {
+        return str == null || str == '';
     },
-    isNotEmpty: function (input) {
-        return !this.isEmpty(input);
+    isNotEmpty (str) {
+        return !this.isEmpty(str);
     },
-    isBlank: function (input) {
-        return input == null || /^\s*$/.test(input);
+    isBlank (str) {
+        return str == null || /^\s*$/.test(str);
     },
-    isNotBlank: function (input) {
-        return !this.isBlank(input);
+    isNotBlank (str) {
+        return !this.isBlank(str);
     },
-    trim: function (input) {
-        return input.replace(/^\s+|\s+$/, '');
+    trim (str) {
+        return str.replace(/^\s+|\s+$/, '');
     },
-    trimToEmpty: function (input) {
-        return input == null ? "" : this.trim(input);
+    trimToEmpty (str) {
+        return str == null ? "" : this.trim(str);
     },
-    startsWith: function (input, prefix) {
-        return input.indexOf(prefix) === 0;
+    startsWith (str, prefix) {
+        return str.indexOf(prefix) === 0;
     },
 
 
 
 
     //生成指定个数的字符
-    repeat: function (ch, repeatTimes) {
+    repeat (ch, repeatTimes) {
         var result = "";
         for (var i = 0; i < repeatTimes; i++) {
             result += ch;
@@ -271,26 +273,26 @@ StringUtils = {
         return newStr;
     },
 
-    rightPad: function (input, size, padStr) {
-        return input + this.repeat(padStr, size);
+    rightPad (str, size, padStr) {
+        return str + this.repeat(padStr, size);
     },
-    leftPad: function (input, size, padStr) {
-        return this.repeat(padStr, size) + input;
+    leftPad (str, size, padStr) {
+        return this.repeat(padStr, size) + str;
     },
 
     //首大写字母转小写
-    uncapitalize: function (input) {
+    uncapitalize (str) {
         var strLen = 0;
-        if (input == null || (strLen = input.length) == 0) {
-            return input;
+        if (str == null || (strLen = str.length) == 0) {
+            return str;
         }
-        return input.replace(/^[A-Z]/, function (matchStr) {
+        return str.replace(/^[A-Z]/, function (matchStr) {
             return matchStr.toLocaleLowerCase();
         });
     },
     //大写转小写，小写转大写
-    swapCase: function (input) {
-        return input.replace(/[a-z]/ig, function (matchStr) {
+    swapCase (str) {
+        return str.replace(/[a-z]/ig, function (matchStr) {
             if (matchStr >= 'A' && matchStr <= 'Z') {
                 return matchStr.toLocaleLowerCase();
             } else if (matchStr >= 'a' && matchStr <= 'z') {
@@ -300,49 +302,48 @@ StringUtils = {
     },
 
 
-    isWhitespace: function (input) {
-        return /^\s*$/.test(input);
+    isWhitespace (str) {
+        return /^\s*$/.test(str);
     },
 
     //字符串反转
-    reverse: function (input) {
-        if (this.isBlank(input)) {
-            input;
+    reverse (str) {
+        if (this.isBlank(str)) {
+            str;
         }
-        return input.split("").reverse().join("");
+        return str.split("").reverse().join("");
     },
     //删掉特殊字符(英文状态下)
-    removeSpecialCharacter: function (input) {
-        return input.replace(/[!-/:-@\[-`{-~]/g, "");
+    removeSpecialCharacter (str) {
+        return str.replace(/[!-/:-@\[-`{-~]/g, "");
     },
     //只包含特殊字符、数字和字母（不包括空格，若想包括空格，改为[ -~]）
-    isSpecialCharacterAlphanumeric: function (input) {
-        return /^[!-~]+$/.test(input);
+    isSpecialCharacterAlphanumeric (str) {
+        return /^[!-~]+$/.test(str);
     },
 
     //中文校验
-    isChinese: function (input) {
-        return /^[\u4E00-\u9FA5]+$/.test(input);
+    isChinese (str) {
+        return /^[\u4E00-\u9FA5]+$/.test(str);
     },
     //去掉中文字符
-    removeChinese: function (input) {
-        return input.replace(/[\u4E00-\u9FA5]+/gm, "");
+    removeChinese (str) {
+        return str.replace(/[\u4E00-\u9FA5]+/gm, "");
     },
     //转义元字符
-    escapeMetacharacter: function (input) {
+    escapeMetacharacter (str) {
         var metacharacter = "^$()*+.[]|\\-?{}|";
-        if (metacharacter.indexOf(input) >= 0) {
-            input = "\\" + input;
+        if (metacharacter.indexOf(str) >= 0) {
+            str = "\\" + str;
         }
-        return input;
+        return str;
     },
     //转义字符串中的元字符
-    escapeMetacharacterOfStr: function (input) {
-        return input.replace(/[\^\$\(\)\*\+\.\[\]\|\\\-\?\{\}\|]/gm, "\\$&");
+    escapeMetacharacterOfStr (str) {
+        return str.replace(/[\^\$\(\)\*\+\.\[\]\|\\\-\?\{\}\|]/gm, "\\$&");
     }
 
 };
 
 
-
-export default StringUtils;
+module.exports = StringUtils;

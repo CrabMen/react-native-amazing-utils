@@ -2,8 +2,8 @@
   "name": "react-native-amazing-utils",
   "version": "1.0.0",
   "description": "string utils",
-  "main": "./example/src/StringUtils.js",
-  "types": "./example/src/StringUtils.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "directories": {
     "example": "examples"
   },
@@ -14,10 +14,14 @@
     "type": "git",
     "url": "git+https://github.com/CrabMen/react-native-amazing-utils.git"
   },
-  "author": "CrabMen",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/CrabMen/react-native-amazing-utils/issues"
   },
-  "homepage": "https://github.com/CrabMen/react-native-amazing-utils#readme"
+  "homepage": "https://github.com/CrabMen/react-native-amazing-utils#readme",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
 }
