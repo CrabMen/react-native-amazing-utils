@@ -6,31 +6,60 @@ StringUtils = {
     },
 
 
-    compare(str) {
+    localeCompare(str1, str2,locales,ignoreCase) {
 
+        if (ignoreCase) {
+            const newStr1 = str1.toLocaleLowerCase(locales)
+            const newStr2 = str2.toLocaleLowerCase(locales) 
+            return newStr1.localeCompare(newStr2,locales)
+        }
+        return str1.localeCompare(str2,locales)
     },
 
-    compareIgnoreCase(str) {
+    contains: function (str, searchStr,ignoreCase) {
 
+        if (str.length == 0 || searchSeq.length == 0) return false
 
+        if(ignoreCase){
+            const newStr = str.toLowerCase()
+            const newSearchStr= searchStr.toLowerCase(locales) 
+            return newStr.indexOf(newSearchStr) >= 0;
+        }
+
+        return str.indexOf(searchStr) >= 0;
     },
 
-    contains: function (input, searchSeq) {
-        return input.indexOf(searchSeq) >= 0;
+    containsAny(str, array) {
+        if (str.length == 0 || array.length == 0) return false
+
+        array.forEach(element => {
+            if (!contains(str, element)) return false
+        });
+        return true
     },
-    // containsAny() {
 
-    // },
+    containsIgnoreCase(str, searchSeq) {
 
-    // containsIgnoreCase() {
+        if (str.length == 0 || searchSeq.length == 0) return false
 
-    // },
-    // containsNone() {
+        let searchStr = searchSeq.toLowerCase()
 
-    // },
-    // containsOnly() {
+        return str.toLowerCase().indexOf(searchStr)
 
-    // },
+    },
+    // 判断字符串中是否不包含指定的字符或指定的字符串中的字符，区分大小写
+    containsNone(str, searchSeq) {
+        return !containsOnly(str, searchSeq)
+    },
+
+    containsOnly(str, searchSeq) {
+        let newStr = removeRepeatStr(str)
+        for (let index = 0; index < str.length; index++) {
+            const char = str.charAt(index);
+            if (!contains(searchSeq, char)) return false
+        }
+        return true
+    },
     containsWhitespace: function (input) {
         return this.contains(input, ' ');
     },
@@ -100,11 +129,35 @@ StringUtils = {
     // firstNonEmpty(){},
     // getCommonPrefix(){},
     // getDigits(){},
-    // indexOf(){},
-    // indexOfAny(){},
-    // indexOfAnyBut(){},
+    indexOf(str, searchStr) {
+        return str.indexOf(searchStr)
+    },
+    //找出字符数组searChars第一次出现在字符串中的位置
+    indexOfAny(str, chars) {
+        if (str.length == 0 || chars.length == 0) return -1
+
+        const index = -1
+
+        chars.forEach(element => {
+            index = str.indexOf(element)
+            if (index >= 0) return index
+        });
+
+        return index
+
+    },
+
+
+    // indexOfAnyBut(str, chars) {
+
+
+    // },
     // indexOfDifference(){},
-    // indexOfIgnoreCase(){},
+    indexOfIgnoreCase(str, serachStr) {
+        const newStr = str.toLowerCase()
+        const newSearchStr = serachStr.toLowerCase()
+        return indexOf(newStr, newSearchStr)
+    },
     isAllLowerCase: function (input) {
         return /^[a-z]+$/.test(input);
     },
@@ -202,6 +255,20 @@ StringUtils = {
             result += ch;
         }
         return result;
+    },
+
+
+    removeRepeatStr(str) {
+        var obj = {};
+        var newStr = '';
+        var len = str.length;
+        for (var i = 0; i < len; i++) {
+            if (!obj[str[i]]) {
+                newStr = newStr + str[i];
+                obj[str[i]] = 1;//注意，这里的1是给对象属性赋值，这个值可以任意取。意思是把每个遍历的字符作为对象属性并赋值保存，保证该属性的唯一性
+            }
+        }
+        return newStr;
     },
 
     rightPad: function (input, size, padStr) {
