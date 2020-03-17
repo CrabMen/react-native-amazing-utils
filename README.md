@@ -1,2 +1,2 @@
-# react-native-string-utils
-string utils
+# react-native-amazing-utils
+amazing utils

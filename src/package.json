@@ -1,7 +1,7 @@
 {
   "name": "react-native-amazing-utils",
-  "version": "1.0.0",
-  "description": "string utils",
+  "version": "0.0.1",
+  "description": "amazing utils",
   "main": "index.js",
   "types": "index.d.ts",
   "directories": {
@@ -14,8 +14,8 @@
     "type": "git",
     "url": "git+https://github.com/CrabMen/react-native-amazing-utils.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["react-native","react","common utils","string utils","string"],
+  "author": "CrabMen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/CrabMen/react-native-amazing-utils/issues"
