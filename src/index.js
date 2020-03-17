@@ -111,26 +111,33 @@ var StringUtils = {
     },
 
     endsWith (str, suffix) {
-        String
-        return str.lastIndexOf(suffix) === 0;
+        return str.lastIndexOf(suffix) == 0;
     },
     // endsWithAny() { },
 
     // endsWithIgnoreCase() { },
-    equals (str1, str2) {
+    equals (str1, str2,ignoreCase) {
+        if (ignoreCase) {
+            return str1.toLocaleLowerCase() == str2.toLocaleLowerCase()
+        } 
         return str1 == str2;
     },
 
     // equalsAny() { },
     // equalsAnyIgnoreCase() { },
-    equalsIgnoreCase (str1, str2) {
-        return str1.toLocaleLowerCase() == str2.toLocaleLowerCase();
-    },
+    // equalsIgnoreCase (str1, str2) {
+    //     return str1.toLocaleLowerCase() == str2.toLocaleLowerCase();
+    // },
     // firstNonBlank(){},
     // firstNonEmpty(){},
     // getCommonPrefix(){},
     // getDigits(){},
-    indexOf(str, searchStr) {
+    indexOf(str, searchStr,ignoreCase) {
+        if (ignoreCase) {
+            const newStr = str.toLowerCase()
+            const newSearchStr = serachStr.toLowerCase()
+            return indexOf(newStr, newSearchStr)
+        }
         return str.indexOf(searchStr)
     },
     //找出字符数组searChars第一次出现在字符串中的位置
@@ -154,12 +161,11 @@ var StringUtils = {
 
     // },
     // indexOfDifference(){},
-    indexOfIgnoreCase(str, serachStr) {
-        String
-        const newStr = str.toLowerCase()
-        const newSearchStr = serachStr.toLowerCase()
-        return indexOf(newStr, newSearchStr)
-    },
+    // indexOfIgnoreCase(str, serachStr) {
+    //     const newStr = str.toLowerCase()
+    //     const newSearchStr = serachStr.toLowerCase()
+    //     return indexOf(newStr, newSearchStr)
+    // },
     isAllLowerCase (str) {
         return /^[a-z]+$/.test(str);
     },
