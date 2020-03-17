@@ -1,5 +1,4 @@
 #!/bin/sh
-
 git filter-branch --env-filter '
 
 OLD_EMAIL="guoqiang@guoqiangdeMacBook-Pro.local"
@@ -16,4 +15,4 @@ then
     export GIT_AUTHOR_NAME="$CORRECT_NAME"
     export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
 fi
-' --tag-name-filter cat -- --branches --tagsq
+' --tag-name-filter cat -- --branches --tags -f
